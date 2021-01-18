@@ -1,2 +1,14 @@
-cb <- givitiCalibrationBelt(o = ymdata$icumortalityday28, e = ymdata$pre,devel = "external")
-plot(cb, main = "SAPS3 calibration",xlab = "SAPS3 predicted probability",ylab = "Observed mortality")
+校准曲线
+ fit.sapsnew<-lrm(icumortalityday28 ~saps3score ,data=mydata,x=T,y=T)
+ cal1 <- calibrate(fit.sapsnew, cmethod='hare', method='boot', B=1000,data=ymdata)
+ 
+ givitiR校准曲线带
+library(givitiR)
+cb <- givitiCalibrationBelt(o = ymdata$icumortalityday28, e = ymdata$presaps3 , devel = "external")
+plot(cb, main = "SAPSIII calibration" , xlab = "SAPSIII predicted probability",  ylab = "Observed mortality")
+
+cb <- givitiCalibrationBelt(o = ymdata$icumortalityday28, e = ymdata$preapache4 , devel = "external")
+plot(cb, main = "APACHEIV calibration" , xlab = "APACHIV predicted probability",  ylab = "Observed mortality")
+
+cb <- givitiCalibrationBelt(o = ymdata$icumortalityday28, e = ymdata$preapache2 , devel = "external")
+plot(cb, main = "APACHEII calibration" , xlab = "APACHEII predicted probability",  ylab = "Observed mortality")
