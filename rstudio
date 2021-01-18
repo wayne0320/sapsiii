@@ -1,0 +1,2 @@
+cb <- givitiCalibrationBelt(o = ymdata$icumortalityday28, e = ymdata$pre,devel = "external")
+plot(cb, main = "SAPS3 calibration",xlab = "SAPS3 predicted probability",ylab = "Observed mortality")
